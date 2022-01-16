@@ -5,6 +5,16 @@
 
 还不如我自己做。
 
-|                     题号                          |          状态          |
-|:-------------------------------------------------:|:----------------------:|
-| [P5677](https://www.luogu.com.cn/record/66904459) | [AC](./luogu/P5677.cpp) |
+|                     题号                          |                          状态                              |
+|:-------------------------------------------------:|:----------------------------------------------------------:|
+| [P5677](https://www.luogu.com.cn/record/66904459) | [$\colorbox{#00FF00}{\color{white}AC}$](./luogu/P5677.cpp) |
+
+$\colorbox{#FF0000}{\color{white}红色}$
+$\colorbox{#0000FF}{\color{white}蓝色}$
+$\colorbox{#00FF00}{\color{white}绿色}$
+
+``` latex
+$\colorbox{#FF0000}{\color{white}红色}$
+$\colorbox{#0000FF}{\color{white}蓝色}$
+$\colorbox{#00FF00}{\color{white}绿色}$
+```
