@@ -1,3 +1,21 @@
+<style>
+.AC1 {
+    background-color:green;
+    text-decoration:none;
+    color:white;
+}
+.AC2 {
+    background-color:blue;
+    text-decoration:none;
+    color:white;
+}
+.UA {
+    background-color:red;
+    text-decoration:none;
+    color:white;
+}
+</style>
+
 # 作题记录 
 
 ### 洛谷
@@ -19,11 +37,14 @@
 
 有的时候状态无法显示，可以去[镜像站](https://hub.fastgit.org/YCSHome/code/tree/main/OJ)看
 
-<a style="color: #FF0000" href="https://www.baidu.com">red</a>
-<a style="color: #FFFF00" href="https://www.baidu.com">yellow</a>
-<a style="color: #00FF00" href="https://www.baidu.com">green</a>
-<a style="color: #FFA500" href="https://www.baidu.com">orange</a>
-<a style="color: #0000FF" href="https://www.baidu.com">blue</a>
-<a style="color: #9B30FF" href="https://www.baidu.com">purple</a>
-<a style="color: #000000" href="https://www.baidu.com">black</a>
+<table class="AC1">
+    <td><a class="AC1" href="https://www.baidu.com">AC</a></td>
+</table>
 
+<table class="AC2">
+    <td><a class="AC2" href="https://www.baidu.com">AC</a></td>
+</table>
+
+<table class="UA">
+    <td><a class="UA" href="https://www.baidu.com">AC</a></td>
+</table>
