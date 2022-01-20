@@ -13,6 +13,8 @@
 | [P1966](https://www.luogu.com.cn/record/67008735) | [![](./icon/AC2.png)](./luogu/P1966.cpp) |要取模|
 | [P2412](https://www.luogu.com.cn/record/66947425) | [![](./icon/AC2.png)](./luogu/P2412.cpp) |      |
 | [P2672](https://www.luogu.com.cn/record/67263539) | [![](./icon/AC2.png)](./luogu/P2672.cpp) |      |
+| [P3028](https://www.luogu.com.cn/record/67271195) | [![](./icon/AC1.png)](./luogu/P3028.cpp) |      |
+| [P3608](https://www.luogu.com.cn/record/67290833) | [![](./icon/AC2.png)](./luogu/P3608.cpp) |      |
 | [P4113](https://www.luogu.com.cn/record/67020396) | [![](./icon/AC2.png)](./luogu/P4113.cpp) |      |
 | [P4392](https://www.luogu.com.cn/record/66959521) | [![](./icon/AC2.png)](./luogu/P4392.cpp) |      |
 | [P4970](https://www.luogu.com.cn/record/66957559) | [![](./icon/AC2.png)](./luogu/P4970.cpp) |      |
