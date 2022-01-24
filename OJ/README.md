@@ -8,8 +8,10 @@
 |                       题号                        |                   状态                   |  备注  | 
 | :-----------------------------------------------: | :--------------------------------------: |:------:| 
 | [P1011](https://www.luogu.com.cn/record/66961787) | [![](./icon/AC1.png)](./luogu/P1011.cpp) |        | 
+| [P1196](https://www.luogu.com.cn/record/67799014) | [![](./icon/AC2.png)](./luogu/P1196.cpp) |我是 SB | 
 | [P1382](https://www.luogu.com.cn/record/67682897) | [![](./icon/AC2.png)](./luogu/P1382.cpp) |        | 
 | [P1433](https://www.luogu.com.cn/record/67013186) | [![](./icon/AC2.png)](./luogu/P1433.cpp) | 论内存 | 
+| [P1886](https://www.luogu.com.cn/record/67800765) | [![](./icon/AC2.png)](./luogu/P1886.cpp) | ST  滚 | 
 | [P1908](https://www.luogu.com.cn/record/67004590) | [![](./icon/AC1.png)](./luogu/P1908.cpp) |        | 
 | [P1966](https://www.luogu.com.cn/record/67008735) | [![](./icon/AC2.png)](./luogu/P1966.cpp) | 要取模 | 
 | [P2070](https://www.luogu.com.cn/record/67605089) | [![](./icon/AC1.png)](./luogu/P2070.cpp) |        | 
@@ -26,6 +28,8 @@
 | [P4970](https://www.luogu.com.cn/record/66957559) | [![](./icon/AC2.png)](./luogu/P4970.cpp) |        | 
 | [P5588](https://www.luogu.com.cn/record/67638354) | [![](./icon/AC2.png)](./luogu/P5588.cpp) |        | 
 | [P5677](https://www.luogu.com.cn/record/66904459) | [![](./icon/AC1.png)](./luogu/P5677.cpp) |        | 
+| [P6186](https://www.luogu.com.cn/record/67797268) | [![](./icon/AC2.png)](./luogu/P6186.cpp) |论 long | 
+| [P6278](https://www.luogu.com.cn/record/67685440) | [![](./icon/AC2.png)](./luogu/P6278.cpp) |论 long | 
 | [P6492](https://www.luogu.com.cn/record/67647111) | [![](./icon/AC2.png)](./luogu/P6492.cpp) |        | 
 | [P7764](https://www.luogu.com.cn/record/67650868) | [![](./icon/AC2.png)](./luogu/P7764.cpp) |散列会炸| 
  
@@ -35,3 +39,8 @@
 | [814C](https://www.luogu.com.cn/record/67370644) | [![](./icon/AC2.png)](./Codeforces/814C.cpp) |      | 
  
 有的时候状态无法显示，可以去[镜像站](https://hub.fastgit.org/YCSHome/code/tree/main/OJ)看
+
+### 一些没啥用的心得
+
++ 2022.1.23  
+  感谢[P1886](https://luogu.com.cn/problem/P1886)这道题的给我来的狠狠一巴掌。$ST表$ 尽可能只维护 __一个数组__，否则会`MLE`。
