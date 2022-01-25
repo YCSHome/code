@@ -1,68 +1,25 @@
-#include <algorithm>
-#include <cstdio>
-#include <iostream>
-#include <queue>
-
+#include<bits/stdc++.h>
 using namespace std;
-
-const int N = 100010;
-
-struct Node {
-  int p, c, t;
-} a[N];
-
-struct cmp {
-  bool operator()(int i, int j) { return a[i].t > a[j].t; }
-};
-
-int n, k;
-long long m;
-bool vis[N];
-int lp[N], lc[N];
-priority_queue<int, vector<int>, cmp> q;
-
-int main() {
-  // freopen("test.in", "r", stdin);
-  cin >> n >> k >> m;
-  for (int i = 0; i < n; i++) {
-    cin >> a[i].p >> a[i].c;
-    a[i].t = a[i].p - a[i].c;
-    lp[i] = lc[i] = i;
-  }
-  sort(a, a + n, [](const Node &i, const Node &j) { return i.c < j.c; });
-  int cnt = 0, ans = k;
-  for (int i = 0; i < k; i++) {
-    m -= a[i].c;
-    if (m < 0) {
-      cout << i;
-      return 0;
-    }
-    q.push(i);
-  }
-  sort(lp + k, lp + n, [](int i, int j) { return a[i].p < a[j].p; });
-  // sort(lc + k, lc + n, [](int i, int j) { return a[i].c < a[j].c; });
-  for (int i = k, kp = k; i < n;) {
-    if (a[lp[kp]].p < a[q.top()].t + a[i].c) {
-      m -= a[lp[kp]].p;
-      vis[lp[kp]] = 1;
-      // cout << 1;
-    } else {
-      m -= a[q.top()].t + a[i].c;
-      vis[i] = 1;
-      q.pop();
-      q.push(i);
-    }
-    // cout << m << endl;
-    if (m < 0) {
-      break;
-    }
-    ans++;
-    for (; vis[i]; i++)
-      ;
-    for (; vis[lp[kp]]; kp++)
-      ;
-    cout << i << endl;
-  }
-  cout << ans;
-  return 0;
+int n,s,t,k1,k2;
+long long f[2][505][505];
+char c[505][505];
+#define mod 1000000007
+int main()
+{
+	cin>>n;
+	for(int i=1;i<=n;i++)
+	scanf("%s",c[i]+1);
+	for(int i=1;i<=n;i++)
+	f[(n+1)%2][i][i]=1;//只长一个字母时的初始化
+	k1=n;k2=n+2;//坐标和
+	for( ;k1>=2;k1--,k2++)
+	{
+		memset(f[k1%2],0,sizeof(f[k1%2])); 
+		for(int i=1;i<=k1-1;i++)//k1的横坐标
+		for(int j=k2-n;j<=n;j++)//k2的横坐标
+		if(c[i][k1-i]==c[j][k2-j])
+		f[k1%2][i][j]=(f[(k1+1)%2][i][j-1]+f[(k1+1)%2][i][j]+f[(k1+1)%2][i+1][j-1]+f[(k1+1)%2][i+1][j])%mod;
+	}
+	cout<<f[0][1][n]<<endl;//(1,1),(n,n)坐标和%2自然为0
+	return 0;
 }

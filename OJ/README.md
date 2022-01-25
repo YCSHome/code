@@ -19,9 +19,12 @@
 | [P2205](https://www.luogu.com.cn/record/67604897) | [![](./icon/AC2.png)](./luogu/P2205.cpp) |        | 
 | [P2412](https://www.luogu.com.cn/record/66947425) | [![](./icon/AC2.png)](./luogu/P2412.cpp) |        | 
 | [P2672](https://www.luogu.com.cn/record/67263539) | [![](./icon/AC2.png)](./luogu/P2672.cpp) |        | 
+| [P2882](https://www.luogu.com.cn/record/67888426) | [![](./icon/AC2.png)](./luogu/P2882.cpp) |        | 
 | [P2912](https://www.luogu.com.cn/record/67608292) | [![](./icon/AC1.png)](./luogu/P2912.cpp) |        | 
 | [P3019](https://www.luogu.com.cn/record/67379975) | [![](./icon/AC1.png)](./luogu/P3019.cpp) |        | 
 | [P3028](https://www.luogu.com.cn/record/67271195) | [![](./icon/AC1.png)](./luogu/P3028.cpp) |        | 
+| [P3126](https://www.luogu.com.cn/record/67903221) | [![](./icon/AC2.png)](./luogu/P3126.cpp) |滚动数组| 
+| [P3127](https://www.luogu.com.cn/record/67858621) | [![](./icon/AC2.png)](./luogu/P3127.cpp) |        | 
 | [P3608](https://www.luogu.com.cn/record/67290833) | [![](./icon/AC2.png)](./luogu/P3608.cpp) |        | 
 | [P4113](https://www.luogu.com.cn/record/67020396) | [![](./icon/AC2.png)](./luogu/P4113.cpp) |        | 
 | [P4392](https://www.luogu.com.cn/record/66959521) | [![](./icon/AC2.png)](./luogu/P4392.cpp) |        | 
@@ -44,3 +47,6 @@
 
 + 2022.1.23  
   感谢[P1886](https://luogu.com.cn/problem/P1886)这道题的给我来的狠狠一巴掌。$ST表$ 尽可能只维护 __一个数组__，否则会`MLE`。
+
++ 2022.1.25
+  感谢[P3026](https://www.luogu.com.cn/record/67903221)这道题给我的狠狠一巴掌。 DP 的滚动数组还是要多练练
