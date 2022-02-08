@@ -9,6 +9,7 @@
 | :-----------------------------------------------: | :--------------------------------------: |:------:| 
 | [P1011](https://www.luogu.com.cn/record/66961787) | [![](./icon/AC1.png)](./luogu/P1011.cpp) |        | 
 | [P1196](https://www.luogu.com.cn/record/67799014) | [![](./icon/AC2.png)](./luogu/P1196.cpp) |我是 SB | 
+| [P1337](https://www.luogu.com.cn/record/68766964) | [![](./icon/AC2.png)](./luogu/P1337.cpp) | 论玄学 | 
 | [P1382](https://www.luogu.com.cn/record/67682897) | [![](./icon/AC2.png)](./luogu/P1382.cpp) |        | 
 | [P1433](https://www.luogu.com.cn/record/67013186) | [![](./icon/AC2.png)](./luogu/P1433.cpp) | 论内存 | 
 | [P1886](https://www.luogu.com.cn/record/67800765) | [![](./icon/AC2.png)](./luogu/P1886.cpp) | ST  滚 | 
@@ -37,9 +38,10 @@
 | [P7764](https://www.luogu.com.cn/record/67650868) | [![](./icon/AC2.png)](./luogu/P7764.cpp) |散列会炸| 
  
 ### Codeforces 
-|                       题号                       |                     状态                     | 备注 | 
-| :----------------------------------------------: | :------------------------------------------: | :--: | 
-| [814C](https://www.luogu.com.cn/record/67370644) | [![](./icon/AC2.png)](./Codeforces/814C.cpp) |      | 
+|                       题号                       |                     状态                     |  备注  | 
+| :----------------------------------------------: | :------------------------------------------: |:------:| 
+| [814C](https://www.luogu.com.cn/record/67370644) | [![](./icon/AC2.png)](./Codeforces/814C.cpp) |        | 
+| [916E](https://www.luogu.com.cn/record/68735406) | [![](./icon/AC2.png)](./Codeforces/916E.cpp) |论 long | 
  
 有的时候状态无法显示，可以去[镜像站](https://hub.fastgit.org/YCSHome/code/tree/main/OJ)看
 
