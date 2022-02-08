@@ -2,7 +2,8 @@
 
 using namespace std;
 
-string s[10] = {"?", "Beatrice", "Belinda", "Bella", "Bessie", "Betsy", "Blue", "Buttercup", "Sue"};
+string s[10] = {"?",     "Beatrice", "Belinda",   "Bella", "Bessie",
+                "Betsy", "Blue",     "Buttercup", "Sue"};
 
 int n;
 bool must[10][10];

@@ -16,7 +16,7 @@ void dfs(int c, int now, int sum) {
   ch[c] = '-';
   dfs(c + 1, now, sum);
   ch[c] = '+';
-  dfs(c + 1, now, sum );
+  dfs(c + 1, now, sum);
   ch[c] = ' ';
   dfs(c + 1, now * 10 + c, sum);
 }

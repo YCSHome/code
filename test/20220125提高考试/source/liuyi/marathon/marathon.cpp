@@ -6,14 +6,12 @@ const int MAXN = 1e6;
 
 struct node {
   int x, y;
-}a[MAXN];
+} a[MAXN];
 
 int n;
 int s = 0, ans = INT_MAX;
 
-int len(int x, int y) {
-  return abs(a[x].x - a[y].x) + abs(a[x].y - a[y].y);
-}
+int len(int x, int y) { return abs(a[x].x - a[y].x) + abs(a[x].y - a[y].y); }
 
 int main() {
   freopen("marathon.in", "r", stdin);

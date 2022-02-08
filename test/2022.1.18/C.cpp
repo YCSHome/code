@@ -17,6 +17,4 @@ void dfs(int u) {
   }
 }
 
-int main() {
-  ...
-}
+int main() { ... }
