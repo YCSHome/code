@@ -31,7 +31,7 @@ int main() {
     int l, r, k;
     scanf("%d%d%d", &l, &r, &k);
     int f1 = find(l - 1);
-	  int f2 = find(r); 
+    int f2 = find(r);
     if (f1 != f2) {
       father[f1] = f2;
       value[f1] = k + value[r] - value[l - 1];

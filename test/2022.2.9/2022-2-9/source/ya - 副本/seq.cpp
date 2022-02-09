@@ -2,17 +2,19 @@
 
 using namespace std;
 
-#define rep(i, s, e) for (int i = s; i <= e; ++ i)
-#define drep(i, s, e) for (int i = s; i >= e; -- i)
-#define file(a) freopen(#a".in", "r", stdin), freopen(#a".out", "w", stdout)
+#define rep(i, s, e) for (int i = s; i <= e; ++i)
+#define drep(i, s, e) for (int i = s; i >= e; --i)
+#define file(a) freopen(#a ".in", "r", stdin), freopen(#a ".out", "w", stdout)
 
 using ll = long long;
 
 const int N = 1e6 + 10;
 
 int read() {
-  int x = 0, f = 1; char c = getchar();
-  for (; c < '0' || c > '9'; c = getchar()) if (c == '-') f = -1;
+  int x = 0, f = 1;
+  char c = getchar();
+  for (; c < '0' || c > '9'; c = getchar())
+    if (c == '-') f = -1;
   for (; c >= '0' && c <= '9'; c = getchar()) x = x * 10 + c - 48;
   return x * f;
 }
@@ -43,7 +45,8 @@ int main() {
   rep(i, 0, n) fa[i] = i;
   rep(i, 1, m) {
     int u = read() - 1, v = read(), k = read();
-    if (get(u) != get(v)) merge(v, u, k);
+    if (get(u) != get(v))
+      merge(v, u, k);
     else {
       if ((dis(v) - dis(u) + p) % p == k) continue;
       return printf("%d\n", i - 1, 0), 0;

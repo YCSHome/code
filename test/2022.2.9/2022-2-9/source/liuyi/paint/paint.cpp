@@ -18,12 +18,10 @@ struct rec {
     top = left = INT_MAX;
     down = right = INT_MIN;
   }
-}a[MAXN];
+} a[MAXN];
 
 // 你个瘪三竟然只给n*m的取值范围
-int pos(int x, int y) {
-  return x * m + y;
-}
+int pos(int x, int y) { return x * m + y; }
 
 int main() {
   freopen("paint.in", "r", stdin);
@@ -63,7 +61,8 @@ int main() {
   }
   for (int i = 1; i <= n; i++) {
     for (int j = 1; j <= m; j++) {
-      sum[pos(i, j)] = sum[pos(i, j)] + sum[pos(i - 1, j)] + sum[pos(i, j - 1)] - sum[pos(i - 1, j - 1)];
+      sum[pos(i, j)] = sum[pos(i, j)] + sum[pos(i - 1, j)] +
+                       sum[pos(i, j - 1)] - sum[pos(i - 1, j - 1)];
     }
   }
   for (int i = 1; i <= n; i++) {
