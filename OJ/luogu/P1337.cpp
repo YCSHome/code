@@ -3,8 +3,8 @@
 using namespace std;
 
 const int MAXN = 1e6;
-const double res = 0.999; // 每次温度倍数
-const double End = 0.001; // 最低温度
+const double res = 0.999;  // 每次温度倍数
+const double End = 0.001;  // 最低温度
 const int baoli = 100000;
 
 int n;
@@ -13,7 +13,7 @@ double t = 1e8;
 double ansx, ansy;
 double ans = 0;
 
-double Rand() { // 概率
+double Rand() {  // 概率
   return (double)rand() / RAND_MAX;
 }
 

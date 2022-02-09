@@ -13,9 +13,7 @@ int find(int x) {
   return father[x] = find(father[x]);
 }
 
-void unionn(int x, int y) {
-  father[find(x)] = find(y);
-}
+void unionn(int x, int y) { father[find(x)] = find(y); }
 
 int main() {
   for (int i = 0; i < MAXN; i++) {

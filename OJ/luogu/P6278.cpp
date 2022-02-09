@@ -8,9 +8,7 @@ class BitTree {
 private:
   long long a[MAXN];
 
-  long long lowbit(long long x) {
-    return x & -x;
-  }
+  long long lowbit(long long x) { return x & -x; }
 
 public:
   void add(long long x, long long y) {
@@ -26,7 +24,7 @@ public:
     }
     return res;
   }
-}tree;
+} tree;
 
 long long n;
 long long a[MAXN], ans[MAXN];
@@ -35,7 +33,7 @@ int main() {
   cin >> n;
   for (long long i = 1; i <= n; i++) {
     cin >> a[i];
-    a[i]++; // fuck 0
+    a[i]++;  // fuck 0
   }
   for (long long i = 1; i <= n; i++) {
     long long temp = n - a[i] + 2;

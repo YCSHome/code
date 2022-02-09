@@ -6,7 +6,7 @@ const int MAXN = 1e6;
 
 struct node {
   int l, r;
-}a[MAXN];
+} a[MAXN];
 
 int n;
 int cnt;

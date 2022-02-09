@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
@@ -16,12 +17,10 @@ private:
     int l, r;
     int value;
     int lazy;
-    node() {
-      l = r = value = lazy = 0;
-    }
-  }*root;
+    node() { l = r = value = lazy = 0; }
+  } * root;
 
-  void pushdown(node* p) {
+  void pushdown(node *p) {
     if (p->lazy != 0) {
       if (p->left != nullptr) {
         p->left->value += (p->left->r - p->left->l + 1) * p->lazy;
@@ -103,25 +102,16 @@ public:
     build(root, 1, tot);
   }
 
+  int get(int l, int r) { return get(root, l, r); }
 
-  int get(int l, int r) {
-    return get(root, l, r);
-  }
+  int find() { return find(root); }
 
-  int find() {
-    return find(root);
-  }
-
-  void add(int l, int r, int k) {
-    add(root, l, r, k);
-  }
-}tree;
+  void add(int l, int r, int k) { add(root, l, r, k); }
+} tree;
 
 struct Line {
   int x, y1, y2, mark;
-  bool operator<(const Line& cmp) const {
-    return x < cmp.x;
-  }
+  bool operator<(const Line &cmp) const { return x < cmp.x; }
 };
 
 struct node {
@@ -134,9 +124,7 @@ vector<node> ans;
 int ok_h[MAXN];
 unordered_map<int, int> ID;
 
-
-void init() {
-}
+void init() {}
 
 void input() {
   int l, r, h;

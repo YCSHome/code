@@ -23,7 +23,7 @@ void add(int u, int v) {
 
 // 线段树
 class SegmentTree {
- private:
+private:
   struct node {
     node *left, *right;
     long long l, r;
@@ -82,7 +82,7 @@ class SegmentTree {
     return get(p->left, l, r) + get(p->right, l, r);
   }
 
- public:
+public:
   void build(int n) { build(root = new node, 1, n); }
 
   void add(int l, int r, int d) { add(root, l, r, d); }

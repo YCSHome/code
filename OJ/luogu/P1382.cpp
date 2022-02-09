@@ -11,23 +11,21 @@ struct node {
     if (x != cmp.x) return x < cmp.x;
     return opt > cmp.opt;
   };
-}a[MAXN];
+} a[MAXN];
 
 class SegmentTree {
 private:
   struct node {
-    node * left, * right;
+    node *left, *right;
     int add;
     int l, r;
     int value;
-    node(int l_, int r_) : l(l_), r(r_) { };
+    node(int l_, int r_) : l(l_), r(r_){};
   } * root;
 
-  void pushup(node * p) {
-    p->value = p->left->value + p->right->value;
-  }
+  void pushup(node* p) { p->value = p->left->value + p->right->value; }
 
-  void pushdown(node * p) {
+  void pushdown(node* p) {
     if (p->add && p->right != nullptr) {
       p->left->value += (p->left->r - p->left->l + 1) * p->add;
       p->right->value += (p->right->r - p->right->l + 1) * p->add;
@@ -37,7 +35,7 @@ private:
     p->add = 0;
   }
 
-  void build(node * p) {
+  void build(node* p) {
     if (p->l == p->r) {
       p->value = 0;
       return;
@@ -48,7 +46,7 @@ private:
     pushup(p);
   }
 
-  int get(node * p) {
+  int get(node* p) {
     if (p->l == p->r) {
       return p->l;
     }
@@ -62,7 +60,7 @@ private:
     return 0;
   }
 
-  void add(node * p, int l, int r, int k) {
+  void add(node* p, int l, int r, int k) {
     if (p->r < l || p->l > r) {
       return;
     }
@@ -77,7 +75,7 @@ private:
     pushup(p);
   }
 
-  int sum(node * p, int l, int r) {
+  int sum(node* p, int l, int r) {
     if (p->r < l || p->l > r) {
       return 0;
     }
@@ -89,22 +87,14 @@ private:
   }
 
 public:
-  int get() {
-    return get(root);
-  }
+  int get() { return get(root); }
 
-  int sum(int l, int r) {
-    return sum(root, l, r);
-  }
+  int sum(int l, int r) { return sum(root, l, r); }
 
-  void build(int n) {
-    build(root = new node(1, n));
-  }
+  void build(int n) { build(root = new node(1, n)); }
 
-  void add(int l, int r, int k) {
-    add(root, l, r, k);
-  }
-}tree;
+  void add(int l, int r, int k) { add(root, l, r, k); }
+} tree;
 
 struct Node {
   int x, y;
@@ -133,11 +123,13 @@ int main() {
   sort(c + 1, c + 1 + cnt);
   cnt = unique(c + 1, c + 1 + cnt) - c - 1;
   tree.build(cnt + 10);
-  for (int i = 1; i <= tot; i++) { a[i].h = lower_bound(c + 1, c + 1 + cnt, a[i].h) - c; }
+  for (int i = 1; i <= tot; i++) {
+    a[i].h = lower_bound(c + 1, c + 1 + cnt, a[i].h) - c;
+  }
 
   int last = 0;
-  for (int i = 1, j; i <= tot; ) {
-    for (j = i; a[i].x == a[j].x && j <= tot; j++)  {
+  for (int i = 1, j; i <= tot;) {
+    for (j = i; a[i].x == a[j].x && j <= tot; j++) {
       tree.add(1, a[j].h, a[j].opt);
     }
     int now = tree.get();
@@ -150,7 +142,7 @@ int main() {
   }
 
   cout << ans.size() << endl;
-  for (auto & i : ans) {
+  for (auto& i : ans) {
     cout << i.x << " " << i.y << endl;
   }
 }

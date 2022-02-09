@@ -6,10 +6,8 @@ const int MAXN = 1e6;
 
 struct node {
   int value, s;
-  bool operator<(const node& cmp) const {
-    return value > cmp.value;
-  }
-}a[MAXN];
+  bool operator<(const node& cmp) const { return value > cmp.value; }
+} a[MAXN];
 
 int n;
 int s[MAXN];
@@ -24,7 +22,7 @@ int main() {
   for (int i = 1; i <= n; i++) {
     cin >> a[i].value;
   }
-  sort(a + 1,a + 1 + n);
+  sort(a + 1, a + 1 + n);
   for (int i = 1; i <= n; i++) {
     s[i] = s[i - 1] + a[i].value;
   }

@@ -7,7 +7,7 @@ const int MAXN = 1e7;
 struct edge {
   int v;
   int next;
-}e[MAXN];
+} e[MAXN];
 
 int head[MAXN];
 int tot = 0;
@@ -25,30 +25,32 @@ long long pos2[MAXN];
 bool vis[MAXN];
 
 void dfs(int x, int fa) {
-	int c = w[x], k = t[c];
-	int flag = 0, p = 0;
-	size[x] = 1;
-	
+  int c = w[x], k = t[c];
+  int flag = 0, p = 0;
+  size[x] = 1;
+
   for (int i = head[x]; i; i = e[i].next) {
     int y = e[i].v;
-		if(y == fa) continue;
-		int lastans = t[c];
-		dfs(y, x);
-		f1[x] += 1LL * size[x] * size[y];
-		size[x] += size[y];
-		if(lastans != t[c]) flag++, p = y;
-	}
-	f1[x] += 1LL * size[x] * (n - size[x]);
-	if(k || t[c] != cnt[c] - 1) flag++;
-	t[c]++; // 当前节点颜色是 c
-	
-	if(flag == 1) { // 端点 
-		if(!pos2[c]) pos[c] = x;
-		else {
-			int p2 = p ? n - size[p] : size[x];
-			f2[c] = 1LL * size[pos[c]] * p2;
-		} pos2[c]++;	
-	}
+    if (y == fa) continue;
+    int lastans = t[c];
+    dfs(y, x);
+    f1[x] += 1LL * size[x] * size[y];
+    size[x] += size[y];
+    if (lastans != t[c]) flag++, p = y;
+  }
+  f1[x] += 1LL * size[x] * (n - size[x]);
+  if (k || t[c] != cnt[c] - 1) flag++;
+  t[c]++;  // 当前节点颜色是 c
+
+  if (flag == 1) {  // 端点
+    if (!pos2[c])
+      pos[c] = x;
+    else {
+      int p2 = p ? n - size[p] : size[x];
+      f2[c] = 1LL * size[pos[c]] * p2;
+    }
+    pos2[c]++;
+  }
 }
 
 int main() {
@@ -65,7 +67,7 @@ int main() {
     add(v, u);
   }
   dfs(1, 0);
-  
+
   for (int i = 1; i <= n; i++) {
     if (cnt[i] == 0) {
       cout << n * (n - 1) / 2 << endl;

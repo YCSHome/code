@@ -6,9 +6,7 @@ const long long MAXN = 2e6;
 
 class BitTree {
 private:
-  long long lowbit(long long x) {
-    return x & -x;
-  }
+  long long lowbit(long long x) { return x & -x; }
   long long a[MAXN];
 
 public:
@@ -25,15 +23,13 @@ public:
     }
     return ans;
   }
-}tree;
+} tree;
 
 struct que {
   long long id;
   long long l, r;
-  bool operator<(const que& q) const {
-    return r < q.r;
-  }
-}q[MAXN];
+  bool operator<(const que& q) const { return r < q.r; }
+} q[MAXN];
 
 long long n, c, m;
 long long a[MAXN];
@@ -49,7 +45,7 @@ int main() {
     scanf("%lld%lld", &q[i].l, &q[i].r);
     q[i].id = i;
   }
-  sort(q + 1,  q + 1 + m);
+  sort(q + 1, q + 1 + m);
   for (long long i = 1, j = 1; i <= m; i++) {
     for (; j <= q[i].r; j++) {
       if (!last1[a[j]]) {

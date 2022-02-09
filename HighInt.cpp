@@ -42,6 +42,7 @@ private:
     }
     return false;
   }
+
 public:
   HighInt() {
     th.push_back(0);
@@ -61,9 +62,7 @@ public:
     }
   }
 
-  HighInt& operator+=(const HighInt& a) {
-    return *this;
-  }
+  HighInt& operator+=(const HighInt& a) { return *this; }
 
   // 基本IO
   friend ostream& operator<<(ostream& out, const HighInt& a) {
@@ -155,8 +154,10 @@ public:
         th[i] += b[i];
       } else {
         // 符号不同，绝对值大的减绝对值小的
-        if (small) th[i] = b[i] - th[i];
-        else th[i] -= b[i];
+        if (small)
+          th[i] = b[i] - th[i];
+        else
+          th[i] -= b[i];
       }
     }
     if (!same) b.negative ^= true;
@@ -185,10 +186,10 @@ int main() {
   cout << (true ^ true) << endl;
   while (cin >> a >> b) {
     cout << a << " < " << b << ":" << (a < b ? "true" : "false") << endl
-       << a << " = " << b << ":" << (a == b ? "true" : "false") << endl
-       << a << " > " << b << ":" << (a > b ? "true" : "false") << endl
-       << a << " + " << b << ":" << a + b << endl
-       << a << " - " << b << ":" << a - b << endl;
+         << a << " = " << b << ":" << (a == b ? "true" : "false") << endl
+         << a << " > " << b << ":" << (a > b ? "true" : "false") << endl
+         << a << " + " << b << ":" << a + b << endl
+         << a << " - " << b << ":" << a - b << endl;
   }
   return 0;
 }

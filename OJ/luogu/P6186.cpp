@@ -10,9 +10,7 @@ private:
   long long a[MAXN];
 
 public:
-  void init() {
-    memset(a, 0, sizeof(a));
-  }
+  void init() { memset(a, 0, sizeof(a)); }
 
   void add(long long x, long long y) {
     if (x == 0) return;
@@ -29,8 +27,10 @@ public:
     return ans;
   }
 
-  long long get(long long l, long long r) { return (l > r ? get(r, l) : get(r) - get(l - 1)); }
-}tree1, tree2;
+  long long get(long long l, long long r) {
+    return (l > r ? get(r, l) : get(r) - get(l - 1));
+  }
+} tree1, tree2;
 
 long long n, m;
 long long a[MAXN], c[MAXN];
@@ -46,8 +46,8 @@ int main() {
   }
   tree1.init(), tree2.init();
   for (long long i = 1; i <= n; i++) {
-     tree1.add(c[i], 1);
-     tree2.add(c[i], c[i]);
+    tree1.add(c[i], 1);
+    tree2.add(c[i], c[i]);
   }
   while (m--) {
     long long opt, k;
@@ -74,7 +74,7 @@ int main() {
       tree1.add(c[k], 1);
       tree1.add(c[k + 1], 1);
       tree2.add(c[k], c[k]);
-      tree2.add(c[k + 1], c[k +  1]);
+      tree2.add(c[k + 1], c[k + 1]);
     }
   }
   return 0;

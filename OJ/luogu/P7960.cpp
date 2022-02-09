@@ -2,6 +2,4 @@
 
 using namespace std;
 
-int main() {
-  int a;
-}
+int main() { int a; }

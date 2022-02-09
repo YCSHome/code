@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+
 #include <queue>
 #define int long long
 
@@ -8,10 +9,8 @@ const int MAXN = 1e6;
 
 struct NODE {
   int x, y;
-  bool operator<(const NODE& A) const {
-    return x < A.x;
-  }
-}a[MAXN], temp; 
+  bool operator<(const NODE& A) const { return x < A.x; }
+} a[MAXN], temp;
 
 int n, m, k;
 int s[MAXN];
@@ -51,7 +50,7 @@ int find_right(int x) {
   return l;
 }
 
-signed main() { 
+signed main() {
   cin >> k >> m >> n;
   for (int i = 1; i <= k; i++) {
     cin >> a[i].x >> a[i].y;

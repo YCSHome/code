@@ -6,15 +6,11 @@ const int MAXN = 1e6;
 
 class BitTree {
 private:
-  static int lowbit(int x) {
-    return x &-x;
-  }
+  static int lowbit(int x) { return x & -x; }
   vector<int> a;
 
 public:
-  void build(int n) {
-    a.resize(n + 10);
-  }
+  void build(int n) { a.resize(n + 10); }
 
   void add(int x, int y) {
     for (; x < a.size(); x += lowbit(x)) {
@@ -29,7 +25,7 @@ public:
     }
     return res;
   }
-}tree1, tree2;
+} tree1, tree2;
 
 int n, ans = 0;
 int a[MAXN], b[MAXN];
@@ -59,5 +55,3 @@ int main() {
   cout << ans << endl;
   return 0;
 }
-
-

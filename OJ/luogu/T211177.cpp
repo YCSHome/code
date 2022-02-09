@@ -2,7 +2,7 @@
 
 using namespace std;
 
-int n; 
+int n;
 
 class SegmentTree {
 private:
@@ -11,7 +11,7 @@ private:
     int l, r;
     int Max, Min;
     int value, lazy;
-  }*root;
+  } * root;
 
   void pushdown(node *p) {
     if (p->l == p->r) {
@@ -35,7 +35,7 @@ private:
     p->Max = max(p->left->Max, p->right->Max);
     p->Min = min(p->left->Min, p->right->Min);
     p->value = p->left->value + p->right->value;
-  } 
+  }
 
   void update(node *p, int k) {
     if (p->Max < k) {
@@ -60,7 +60,7 @@ private:
     int mid = l + ((r - l) >> 1);
     build(p->left = new node, l, mid);
     build(p->right = new node, mid + 1, r);
-    update(p); 
+    update(p);
   }
 
   void add(node *p, int l, int r, int k) {
@@ -92,22 +92,14 @@ private:
   }
 
 public:
-  void add(int l, int r, int k) {
-    add(root, l, r, k);
-  }
+  void add(int l, int r, int k) { add(root, l, r, k); }
 
-  int get(int l, int r) {
-    return get(root, l, r);
-  }
+  int get(int l, int r) { return get(root, l, r); }
 
-  void update(int k) {
-    update(root, k);
-  }
+  void update(int k) { update(root, k); }
 
-  void build(int n) {
-    build(root = new node, 1, n);
-  }
-}tree;
+  void build(int n) { build(root = new node, 1, n); }
+} tree;
 
 int main() {
   cin >> n;

@@ -34,12 +34,16 @@ void build(int p, int l, int r) {
 
 void pushdown(int p, int l, int r) {
   int m = (l + r) / 2;
-  tree[left_son(p)].v = (tree[left_son(p)].v * tree[p].mul + tree[p].add * (m - l + 1)) % P;
-  tree[right_son(p)].v = (tree[right_son(p)].v * tree[p].mul + tree[p].add * (r - m)) % P;
+  tree[left_son(p)].v =
+      (tree[left_son(p)].v * tree[p].mul + tree[p].add * (m - l + 1)) % P;
+  tree[right_son(p)].v =
+      (tree[right_son(p)].v * tree[p].mul + tree[p].add * (r - m)) % P;
   tree[left_son(p)].mul = (tree[left_son(p)].mul * tree[p].mul) % P;
   tree[right_son(p)].mul = (tree[right_son(p)].mul * tree[p].mul) % P;
-  tree[left_son(p)].add = (tree[left_son(p)].add * tree[p].mul + tree[p].add) % P;
-  tree[right_son(p)].add = (tree[right_son(p)].add * tree[p].mul + tree[p].add) % P;
+  tree[left_son(p)].add =
+      (tree[left_son(p)].add * tree[p].mul + tree[p].add) % P;
+  tree[right_son(p)].add =
+      (tree[right_son(p)].add * tree[p].mul + tree[p].add) % P;
   tree[p].mul = 1;
   tree[p].add = 0;
   return;

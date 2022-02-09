@@ -8,13 +8,11 @@ class SegmentTree {
 private:
   struct node {
     int value, max;
-    node * left, * right;
+    node *left, *right;
     int l, r;
     int add, clear;
-    node() {
-      left = right = nullptr;
-    }
-  }*root;
+    node() { left = right = nullptr; }
+  } * root;
 
   void pushup(node* p) {
     p->add = p->clear = 0;
@@ -43,7 +41,7 @@ private:
     }
   }
 
-  void build(node* p, int l, int r, int *a) {
+  void build(node* p, int l, int r, int* a) {
     p->l = l, p->r = r;
     if (l == r) {
       p->value = (a == nullptr ? 0 : a[l]);
@@ -57,21 +55,31 @@ private:
   }
 
   int get_sum(node* p, int l, int r) {
-    if (l <= p->l && p->r <= r) { return p->value; }
-    if (l > p->r || p->l > r)   { return 0; }
+    if (l <= p->l && p->r <= r) {
+      return p->value;
+    }
+    if (l > p->r || p->l > r) {
+      return 0;
+    }
     pushdown(p);
     return get_sum(p->left, l, r) + get_sum(p->right, l, r);
   }
 
   int get_max(node* p, int l, int r) {
-    if (l <= p->l && p->r <= r) { return p->max; }
-    if (l > p->r || p->l > r)   { return 0; }
+    if (l <= p->l && p->r <= r) {
+      return p->max;
+    }
+    if (l > p->r || p->l > r) {
+      return 0;
+    }
     pushdown(p);
     return max(get_max(p->left, l, r), get_max(p->right, l, r));
   }
 
   void add(node* p, int l, int r, int k) {
-    if (l > p->r || p->l > r) { return; }
+    if (l > p->r || p->l > r) {
+      return;
+    }
     pushdown(p);
     if (l <= p->l && p->r <= r) {
       p->add += k;
@@ -85,7 +93,9 @@ private:
   }
 
   void clear(node* p, int l, int r) {
-    if (l > p->r || p->l > r) { return; }
+    if (l > p->r || p->l > r) {
+      return;
+    }
     pushdown(p);
     if (l <= p->l && p->r <= r) {
       p->value = p->max = p->add = 0;
@@ -96,15 +106,16 @@ private:
     clear(p->right, l, r);
     pushup(p);
   }
-public:
-  void build(int n)         { build(root = new node, 1, n, nullptr); }
-  void build(int *a, int n) { build(root = new node, 1, n, a); }
 
-  void clear(int l, int r)      { clear(root, l, r); }
+public:
+  void build(int n) { build(root = new node, 1, n, nullptr); }
+  void build(int* a, int n) { build(root = new node, 1, n, a); }
+
+  void clear(int l, int r) { clear(root, l, r); }
   void add(int l, int r, int k) { add(root, l, r, k); }
-  int  get_sum(int l, int r)    { return get_sum(root, l, r); }
-  int  get_max(int l, int r)    { return get_max(root, l, r); }
-}tree1, tree2;
+  int get_sum(int l, int r) { return get_sum(root, l, r); }
+  int get_max(int l, int r) { return get_max(root, l, r); }
+} tree1, tree2;
 
 int n, m;
 int a[MAXN];

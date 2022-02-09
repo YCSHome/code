@@ -30,22 +30,18 @@ public:
   int get(int l, int r) {
     int k = LOG[(r - l + 1)];
     return max(a[k][l], a[k][r - (1 << k) + 1]);
-  } 
-
-  ST() { }
-  ST(int a[][MAXN], int n) {
-    build(a, n);
   }
+
+  ST() {}
+  ST(int a[][MAXN], int n) { build(a, n); }
 };
 
 struct word {
   string a;
   string b;
   int id;
-  bool operator<(const word& cmp) const {
-    return b < cmp.b;
-  };
-}words[MAXN];
+  bool operator<(const word& cmp) const { return b < cmp.b; };
+} words[MAXN];
 
 int n, m;
 int a[MAXLOG][MAXN];
@@ -55,8 +51,10 @@ int main() {
   for (int i = 1; i <= n; i++) {
     cin >> words[i].a;
     for (int j = 0; j < words[i].a.size(); j++) {
-      if (words[i].a[j] <= 'Z') words[i].b += words[i].a[j] + 32;
-      else words[i].b += words[i].a[j];
+      if (words[i].a[j] <= 'Z')
+        words[i].b += words[i].a[j] + 32;
+      else
+        words[i].b += words[i].a[j];
     }
     words[i].id = i;
   }

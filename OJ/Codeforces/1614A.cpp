@@ -8,7 +8,7 @@ int t;
 int n, l, r, k;
 int a[MAXN];
 
-int main() { 
+int main() {
   cin >> t;
   while (t--) {
     int cnt = 0;

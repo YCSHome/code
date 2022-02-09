@@ -6,10 +6,8 @@ const int MAXN = 1e6;
 
 struct line {
   int l, r;
-  bool operator<(const line& cmp) const {
-    return l < cmp.l;
-  }
-}a[MAXN];
+  bool operator<(const line& cmp) const { return l < cmp.l; }
+} a[MAXN];
 
 int n, k;
 

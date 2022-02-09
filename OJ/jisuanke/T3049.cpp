@@ -20,6 +20,4 @@ bool prime(long long num) {
 int hen[1001][MAXN];
 int shu[1001][MAXN];
 
-int main() {
-  return 0;
-}
+int main() { return 0; }

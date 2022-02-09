@@ -1,14 +1,7 @@
 #include <bits/stdc++.h>
-#define add(x, y) \
-  asm("addl %%ebx, %%eax" \
-      : "=a" (x) \
-      : "a" (x), "b" (y))
+#define add(x, y) asm("addl %%ebx, %%eax" : "=a"(x) : "a"(x), "b"(y))
 
-#define move(x, y) \
-  asm("movl %%eax, %%ebx" \
-      : "=b" (y) \
-      : "a" (x), "b" (y))
-  
+#define move(x, y) asm("movl %%eax, %%ebx" : "=b"(y) : "a"(x), "b"(y))
 
 using namespace std;
 

@@ -5,36 +5,38 @@ using namespace std;
 class SegmentTree {
 private:
   struct node {
-    node * left, * right;
+    node *left, *right;
     int left_len, right_len;
     int left_pos, right_pos;
     int len;
     int LEN = 0;
     int l, r;
-    node(int l_, int r_) : l(l_), r(r_) { };
+    node(int l_, int r_) : l(l_), r(r_){};
   } * root;
 
-  void pushup(node * p) {
+  void pushup(node* p) {
     p->len = max(p->right->len, p->left->len);
     if (p->left->right_pos != p->right->left_pos) {
       p->len = max(p->len, p->left->right_len + p->right->left_len);
     }
     p->left_pos = p->left->left_pos;
     p->right_pos = p->right->right_pos;
-    if (p->left->left_len == p->left->LEN && p->left->right_pos != p->right->left_pos) {
+    if (p->left->left_len == p->left->LEN &&
+        p->left->right_pos != p->right->left_pos) {
       p->left_len = p->left->left_len + p->right->left_len;
     } else {
       p->left_len = p->left->left_len;
     }
 
-    if (p->right->right_len == p->right->LEN && p->right->left_pos != p->left->right_pos) {
+    if (p->right->right_len == p->right->LEN &&
+        p->right->left_pos != p->left->right_pos) {
       p->right_len = p->right->right_len + p->left->right_len;
     } else {
       p->right_len = p->right->right_len;
     }
   }
 
-  void build(node * p) {
+  void build(node* p) {
     p->LEN = p->r - p->l + 1;
     if (p->l == p->r) {
       p->left_pos = p->right_pos = 0;
@@ -47,7 +49,7 @@ private:
     pushup(p);
   }
 
-  void change(node * p, int x) {
+  void change(node* p, int x) {
     if (p->l > x || p->r < x) return;
     if (p->l == x && p->r == x) {
       p->left_pos = p->right_pos = p->left_pos ^ 1;
@@ -60,19 +62,15 @@ private:
   }
 
 public:
-  void build(int n) {
-    build(root = new node(1, n));
-  }
+  void build(int n) { build(root = new node(1, n)); }
 
-  void change(int x) {
-    change(root, x);
-  }
+  void change(int x) { change(root, x); }
 
   int get() {
     pushup(root);
     return root->len;
   }
-}tree;
+} tree;
 
 int n, q, d;
 

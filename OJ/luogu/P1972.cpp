@@ -6,17 +6,13 @@ const int MAXN = 1e7;
 
 struct que {
   int x, y, id;
-  bool operator<(const que& cmp) const {
-    return y < cmp.y;
-  }
-}qu[MAXN];
+  bool operator<(const que& cmp) const { return y < cmp.y; }
+} qu[MAXN];
 
 class BitTree {
 private:
   int a[MAXN];
-  int lowbit(int x) {
-    return x & -x;
-  }
+  int lowbit(int x) { return x & -x; }
 
 public:
   void add(int x, int k) {
@@ -32,7 +28,7 @@ public:
     }
     return ans;
   }
-}tree;
+} tree;
 
 int a[MAXN];
 int d[MAXN];

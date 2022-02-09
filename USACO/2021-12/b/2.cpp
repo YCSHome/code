@@ -1,5 +1,6 @@
-#include <algorithm>
 #include <bits/stdc++.h>
+
+#include <algorithm>
 #include <climits>
 
 using namespace std;
@@ -8,7 +9,7 @@ const long long MAXN = 1e6;
 
 struct edge {
   long long v, next;
-}e[MAXN];
+} e[MAXN];
 long long tot = 0;
 long long head[MAXN];
 
@@ -34,10 +35,10 @@ void dfs(long long u) {
 }
 
 void new_group(long long u) {
-  group.push_back(vector<long long>{} );
+  group.push_back(vector<long long>{});
   dfs(u);
   sort(group.back().begin(), group.back().end());
-} 
+}
 
 void solve() {
   group.clear();

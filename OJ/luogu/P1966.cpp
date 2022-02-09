@@ -7,9 +7,7 @@ const int MOD = 1e8 - 3;
 
 class BitTree {
 private:
-  int lowbit(int x) {
-    return x & -x;
-  }
+  int lowbit(int x) { return x & -x; }
   int a[MAXN];
 
 public:
@@ -26,7 +24,7 @@ public:
     }
     return ans;
   }
-}tree;
+} tree;
 
 int n;
 int a[MAXN], b[MAXN];

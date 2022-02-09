@@ -6,14 +6,16 @@ const int MAXN = 1e6;
 
 struct node {
   int x, y;
-}a[MAXN];
+} a[MAXN];
 
 int x, y, cnt = 0;
 bool vis[MAXN];
 queue<int> q;
 
 void Record(int u, int v) {
-  if (vis[v] || u == v || !((a[u].x > a[v].x && a[u].x < a[v].y) || (a[u].y > a[v].x && a[u].y < a[v].y))) {
+  if (vis[v] || u == v ||
+      !((a[u].x > a[v].x && a[u].x < a[v].y) ||
+        (a[u].y > a[v].x && a[u].y < a[v].y))) {
     return;
   }
   vis[v] = true;

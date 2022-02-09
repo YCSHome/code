@@ -3,12 +3,9 @@
 
 using namespace std;
 
-const int MAXN = 60,
-      MAXK = 5,
-      MAXF = 2; 
+const int MAXN = 60, MAXK = 5, MAXF = 2;
 
-const int fx[2] = {1, 0},
-      fy[2] = {0, 1};
+const int fx[2] = {1, 0}, fy[2] = {0, 1};
 
 int T;
 int N, K;

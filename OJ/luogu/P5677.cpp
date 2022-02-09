@@ -7,9 +7,7 @@ const int MAXN = 1e6;
 class BitTree {
 private:
   int a[MAXN];
-  static int lowbit(int x) {
-    return x & -x;
-  }
+  static int lowbit(int x) { return x & -x; }
 
 public:
   void add(int x, int y) {
@@ -25,7 +23,7 @@ public:
     }
     return ans;
   }
-}tree;
+} tree;
 
 struct que {
   int l, r, id;
@@ -33,7 +31,7 @@ struct que {
     if (r != cmp.r) return r < cmp.r;
     return l < cmp.l;
   }
-}que[MAXN];
+} que[MAXN];
 
 struct node {
   int l, r;
@@ -41,14 +39,12 @@ struct node {
     if (r != cmp.r) return r < cmp.r;
     return l < cmp.l;
   }
-}nodes[MAXN];
+} nodes[MAXN];
 
 struct num {
   int value, id;
-  bool operator<(const num& cmp) const {
-    return value < cmp.value;
-  };
-}a[MAXN];
+  bool operator<(const num& cmp) const { return value < cmp.value; };
+} a[MAXN];
 
 int tot = 0;
 int n, m;

@@ -6,7 +6,7 @@ const int MAXN = 20;
 
 struct node {
   double x, y;
-}nodes[MAXN];
+} nodes[MAXN];
 
 int n;
 double f[20][35000];
@@ -21,7 +21,8 @@ int main() {
   memset(f, 127, sizeof(f));
   for (int i = 0; i <= n; i++) {
     for (int j = i + 1; j <= n; j++) {
-      dis[i][j] = dis[j][i] = sqrt(pow(nodes[i].x - nodes[j].x, 2) + pow(nodes[i].y - nodes[j].y, 2));
+      dis[i][j] = dis[j][i] = sqrt(pow(nodes[i].x - nodes[j].x, 2) +
+                                   pow(nodes[i].y - nodes[j].y, 2));
     }
   }
   for (int i = 1; i <= n; i++) {

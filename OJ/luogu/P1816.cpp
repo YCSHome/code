@@ -9,6 +9,7 @@ class ST {
 private:
   static int LOG[MAXN];
   int (*a)[MAXN];
+
 public:
   void build(int a[][MAXN], int n) {
     this->a = a;
@@ -54,4 +55,3 @@ int main() {
   }
   return 0;
 }
-

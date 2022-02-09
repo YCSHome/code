@@ -15,13 +15,13 @@ struct node {
       return belong < cmp.belong;
     }
   }
-}que[MAXN];
+} que[MAXN];
 
 int n, m, k;
 long long a[MAXN];
 long long cnt[MAXN];
 long long Ans[MAXN];
-long long ans = 0; 
+long long ans = 0;
 
 void add(int x) {
   ans += 2 * cnt[a[x]] + 1;

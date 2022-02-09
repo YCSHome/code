@@ -18,13 +18,9 @@ struct node {
   long long len;
 } tree[MAXN << 2];
 
-int left_son(int p) {
-  return p << 1;
-}
+int left_son(int p) { return p << 1; }
 
-int right_son(int p) {
-  return p << 1 | 1;
-}
+int right_son(int p) { return p << 1 | 1; }
 
 void build(int p, int l, int r) {
   tree[p].l = l, tree[p].r = r;

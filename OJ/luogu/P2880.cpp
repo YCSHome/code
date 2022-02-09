@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+
 #include <functional>
 
 using namespace std;
@@ -6,7 +7,8 @@ using namespace std;
 const int MAXN = 1e6;
 const int MAXLOG = 32;
 
-template <class type_, class cmp_> struct Max { 
+template <class type_, class cmp_>
+struct Max {
   cmp_ cmper;
   type_ operator()(const type_& a, const type_& b) {
     return cmper(a, b) ? a : b;
@@ -40,12 +42,10 @@ public:
   int get(int l, int r) {
     int k = LOG[(r - l + 1)];
     return cmper(a[k][l], a[k][r - (1 << k) + 1]);
-  } 
-
-  ST() { }
-  ST(int a[][MAXN], int n) {
-    build(a, n);
   }
+
+  ST() {}
+  ST(int a[][MAXN], int n) { build(a, n); }
 };
 
 int a[2][MAXLOG][MAXN];
@@ -67,5 +67,4 @@ int main() {
     cout << high.get(l, r) - low.get(l, r) << endl;
   }
   return 0;
-} 
-
+}

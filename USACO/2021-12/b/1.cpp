@@ -5,9 +5,7 @@ using namespace std;
 int k, m, n;
 vector<int> a;
 
-bool cmp(int a, int b) {
-  return a > b;
-}
+bool cmp(int a, int b) { return a > b; }
 
 int main() {
   cin >> k >> m >> n;

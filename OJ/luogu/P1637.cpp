@@ -6,9 +6,7 @@ const int MAXN = 1e5;
 
 class BitTree {
 private:
-  inline int lowbit(int x) {
-    return x & -x;
-  }
+  inline int lowbit(int x) { return x & -x; }
   int n;
   long long a[MAXN];
 
@@ -31,7 +29,7 @@ public:
     this->n = n;
     memset(a, 0, sizeof(a));
   }
-}tree;
+} tree;
 int n;
 long long a[MAXN];
 long long temp[MAXN];
@@ -45,7 +43,7 @@ int main() {
   }
   sort(temp + 1, temp + 1 + n);
   for (int i = 1; i <= n; i++) {
-    a[i] = lower_bound(temp + 1, temp + 1 + n, a[i]) - temp; 
+    a[i] = lower_bound(temp + 1, temp + 1 + n, a[i]) - temp;
     f[1][i] = 1;
   }
   for (int i = 2; i <= 3; i++) {

@@ -6,15 +6,13 @@ const int MAXN = 1e6;
 
 struct node {
   int s, p;
-  bool operator<(const node& cmp) const {
-    return p < cmp.p;
-  };
-}a[MAXN];
+  bool operator<(const node& cmp) const { return p < cmp.p; };
+} a[MAXN];
 
 struct line {
   int l, r;
   int ls, rs;
-}b[MAXN];
+} b[MAXN];
 
 int s[MAXN], p[MAXN];
 bool ok[MAXN];
@@ -24,7 +22,7 @@ bool solve(int x) {
   int l, r;
   l = r = x;
   while (1 <= l && r <= n) {
-    bool flag =  false;
+    bool flag = false;
     while (b[r].r - b[l].l - 1 >= b[l].ls) {
       l--;
       flag = true;

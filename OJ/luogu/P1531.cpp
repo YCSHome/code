@@ -10,11 +10,9 @@ private:
     node *left, *right;
     int Max = 0;
     int l, r;
-  }*root;
+  } * root;
 
-  void pushup(node *p) {
-    p->Max = max(p->left->Max, p->right->Max);
-  }
+  void pushup(node *p) { p->Max = max(p->left->Max, p->right->Max); }
 
   void build(int base[], node *p, int l, int r) {
     if (l > r) return;
@@ -45,28 +43,22 @@ private:
   }
 
   int find(node *p, int l, int r) {
-    if (p->l > r || p-> r < l) {
+    if (p->l > r || p->r < l) {
       return 0;
     }
     if (l <= p->l && p->r <= r) {
       return p->Max;
     }
     return max(find(p->left, l, r), find(p->right, l, r));
-  } 
+  }
 
 public:
-  int find(int l, int r) {
-    return find(root, l, r);
-  }
+  int find(int l, int r) { return find(root, l, r); }
 
-  void  update(int ID, int score) {
-    update(root, ID, score);
-  }
+  void update(int ID, int score) { update(root, ID, score); }
 
-  void build(int base[], int len) {
-    build(base, root = new node, 1, len);
-  }
-}tree;
+  void build(int base[], int len) { build(base, root = new node, 1, len); }
+} tree;
 
 int n, m;
 int a[MAXN];

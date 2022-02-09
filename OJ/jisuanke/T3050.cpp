@@ -8,7 +8,7 @@ const int MAXN = 3e6;
 struct que {
   int l, r, ID = 0;
   bool operator<(const que &cmp) const { return r < cmp.r; }
-}Q[MAXN];
+} Q[MAXN];
 
 class SegmentTree {
 private:
@@ -55,7 +55,7 @@ private:
     return max(find_node(p->left, l, r), find_node(p->right, l, r));
   }
 
-  void update(node *p, int pos, int value) { 
+  void update(node *p, int pos, int value) {
     if (p->l > pos || p->r < pos) {
       return;
     }
@@ -77,7 +77,7 @@ public:
   int find_len(int l, int r) { return find_len(root, l, r); }
 
   int find_node(int l, int r) { return find_node(root, l, r); }
-}tree;
+} tree;
 
 int n, q;
 int a[MAXN];
@@ -105,12 +105,12 @@ int main() {
       ++r;
     }
   }
-  int now = 1;   // 头指针
+  int now = 1;  // 头指针
   for (int i = 1; i <= n; i++) {
     tree.update(pos[i], i);
     while (now <= q && Q[now].r == i) {
-      ans[Q[now].ID] =
-        max(tree.find_node(1, Q[now].l) - Q[now].l + 1, tree.find_len(Q[now].l, Q[now].r));
+      ans[Q[now].ID] = max(tree.find_node(1, Q[now].l) - Q[now].l + 1,
+                           tree.find_len(Q[now].l, Q[now].r));
       now++;
     }
   }

@@ -19,9 +19,7 @@ void init(int u) {
   }
 }
 
-void init() {
-  init(1);
-}
+void init() { init(1); }
 
 int find(int x, int y) {
   if (d[x] > d[y]) {

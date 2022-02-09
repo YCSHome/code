@@ -21,11 +21,9 @@ int main() {
     for (int i = step + 1; i >= 1; i--) {
       for (int j = n - step; j <= n; j++) {
         if (MAP[step + 2 - i][i] == MAP[2 * n - step - j][j]) {
-          p[i][j] = (1ll *
-            p[i][j] +
-            p[i][j + 1] +
-            p[i - 1][j] +
-            p[i - 1][j + 1]) % MOD;
+          p[i][j] =
+              (1ll * p[i][j] + p[i][j + 1] + p[i - 1][j] + p[i - 1][j + 1]) %
+              MOD;
         } else {
           p[i][j] = 0;
         }

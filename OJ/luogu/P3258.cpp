@@ -6,7 +6,7 @@ const int MAXN = 1e6;
 
 struct edge {
   int v, next;
-}e[MAXN];
+} e[MAXN];
 
 int n;
 int a[MAXN];

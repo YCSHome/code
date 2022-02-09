@@ -11,7 +11,7 @@ int a[MAXN];
 // 建边
 struct edge {
   int u, v, next;
-}e[MAXN];
+} e[MAXN];
 
 int tot = 0;
 int head[MAXN];
@@ -25,7 +25,7 @@ void add(int u, int v) {
 class SegmentTree {
 private:
   struct node {
-    node * left, * right;
+    node *left, *right;
     long long l, r;
     long long value;
     long long lazy;
@@ -35,7 +35,7 @@ private:
     }
   } * root;
 
-  void pushdown(node * p) {
+  void pushdown(node* p) {
     if (p->left == nullptr) return;
     if (p->lazy) {
       p->left->value += (p->left->r - p->left->l + 1) * p->lazy;
@@ -46,11 +46,9 @@ private:
     p->lazy = 0;
   }
 
-  void pushup(node * p) {
-    p->value = p->left->value + p->right->value;
-  }
+  void pushup(node* p) { p->value = p->left->value + p->right->value; }
 
-  void build(node * p, int l, int r) {
+  void build(node* p, int l, int r) {
     p->l = l;
     p->r = r;
     if (l == r) {
@@ -62,7 +60,7 @@ private:
     pushup(p);
   }
 
-  void add(node * p, int l, int r, long long d) {
+  void add(node* p, int l, int r, long long d) {
     if (l > p->r || p->l > r) return;
     if (l <= p->l && p->r <= r) {
       p->value += (p->r - p->l + 1) * d;
@@ -75,8 +73,8 @@ private:
     pushup(p);
   }
 
-  long long get(node * p, int l, int r) {
-    if (l > p->r || p->l > r) return 0 ;
+  long long get(node* p, int l, int r) {
+    if (l > p->r || p->l > r) return 0;
     if (l <= p->l && p->r <= r) {
       return p->value;
     }
@@ -85,17 +83,11 @@ private:
   }
 
 public:
-  void build(int n) {
-    build(root = new node, 1, n);
-  }
+  void build(int n) { build(root = new node, 1, n); }
 
-  void add(int l, int r, int d) {
-    add(root, l, r, d);
-  }
+  void add(int l, int r, int d) { add(root, l, r, d); }
 
-  long long get(int l, int r) {
-    return get(root, l, r);
-  }
+  long long get(int l, int r) { return get(root, l, r); }
 };
 
 // LCA
@@ -199,16 +191,16 @@ int main() {
         int p = find(u, root);
         if (u != p) {
           cout << Tree.get(pos[u], pos[u] + size[u] - 1) << endl;
-       } else {
+        } else {
           p = root;
           for (int i = 29; i >= 0; i--) {
             if (depth[father[p][i]] > depth[u]) p = father[p][i];
           }
-          cout << Tree.get(1, n) - Tree.get(pos[p], pos[p] + size[p] - 1) << endl;
+          cout << Tree.get(1, n) - Tree.get(pos[p], pos[p] + size[p] - 1)
+               << endl;
         }
       }
     }
   }
   return 0;
 }
- 

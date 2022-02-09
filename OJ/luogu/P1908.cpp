@@ -7,9 +7,7 @@ const int MAXN = 1e6;
 class BitTree {
 private:
   int a[MAXN];
-  int lowbit(int x) {
-    return x & -x;
-  }
+  int lowbit(int x) { return x & -x; }
 
 public:
   void add(int x, int y) {
@@ -25,7 +23,7 @@ public:
     }
     return ans;
   }
-}tree;
+} tree;
 
 int n;
 int a[MAXN], b[MAXN];

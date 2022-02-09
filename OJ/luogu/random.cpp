@@ -13,7 +13,7 @@ int main() {
       x = rand() % 20 + 1, y = rand() % 20 + 1;
     } while (x == y);
     if (x > y) swap(x, y);
-    cout << h << " " << x << " " << y <<endl;
+    cout << h << " " << x << " " << y << endl;
   }
   return 0;
 }

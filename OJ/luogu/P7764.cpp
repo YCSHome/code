@@ -13,7 +13,7 @@ struct que {
       return l < cmp.l;
     }
   }
-}q[MAXN];
+} q[MAXN];
 
 int n, m;
 int a[MAXN], ans[MAXN], temp, b[MAXN];

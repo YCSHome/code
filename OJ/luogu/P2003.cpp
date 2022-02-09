@@ -78,8 +78,7 @@ struct Line {
   bool operator<(const Line &cmp) const { return y > cmp.y; }
 } line[MAXN];
 
-void init() {
-}
+void init() {}
 
 void input() {
   cin >> n;
@@ -109,9 +108,7 @@ void work() {
   }
 }
 
-void output() {
-  cout << ans << endl;
-}
+void output() { cout << ans << endl; }
 
 int main() {
   init();

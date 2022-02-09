@@ -4,6 +4,4 @@ using namespace std;
 
 string str;
 
-int main() {
-  return 0;
-}
+int main() { return 0; }

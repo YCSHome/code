@@ -1,6 +1,6 @@
+#include <ctime>
 #include <iostream>
 #include <random>
-#include <ctime>
 
 using namespace std;
 
@@ -15,7 +15,9 @@ int main() {
   uniform_int_distribution<int> MaxMRand(n - 1, min((n - 1) * n, 20000));
   m = MaxMRand(random_engine);
   s = MaxNRand(random_engine);
-  do { e = MaxNRand(random_engine); } while (e == s);
+  do {
+    e = MaxNRand(random_engine);
+  } while (e == s);
   cout << n << " " << m << " " << s << " " << e << endl;
   for (int i = 1; i <= m; i++) {
     int u, v, w = WRand(random_engine);

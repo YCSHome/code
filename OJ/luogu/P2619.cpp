@@ -6,7 +6,7 @@ const int MAXN = 1e6;
 
 struct Edge {
   int v, dis, next;
-}e[MAXN]; 
+} e[MAXN];
 
 int dis[MAXN];
 int head[MAXN];
@@ -24,8 +24,7 @@ void init() {
 
 int V, E, need;
 
-void work() {
-}
+void work() {}
 
 int main() {
   cin >> V >> E >> need;
