@@ -16,8 +16,10 @@
 | [P1908](https://www.luogu.com.cn/record/67004590) | [![](./icon/AC1.png)](./luogu/P1908.cpp) |        | 
 | [P1966](https://www.luogu.com.cn/record/67008735) | [![](./icon/AC2.png)](./luogu/P1966.cpp) | 要取模 | 
 | [P2070](https://www.luogu.com.cn/record/67605089) | [![](./icon/AC1.png)](./luogu/P2070.cpp) |        | 
+| [P2503](https://www.luogu.com.cn/record/68931107) | [![](./icon/AC2.png)](./luogu/P2503.cpp) |        | 
 | [P2190](https://www.luogu.com.cn/record/67593743) | [![](./icon/AC2.png)](./luogu/P2190.cpp) |        | 
 | [P2205](https://www.luogu.com.cn/record/67604897) | [![](./icon/AC2.png)](./luogu/P2205.cpp) |        | 
+| [P2210](https://www.luogu.com.cn/record/68922988) | [![](./icon/AC2.png)](./luogu/P2210.cpp) |        | 
 | [P2412](https://www.luogu.com.cn/record/66947425) | [![](./icon/AC2.png)](./luogu/P2412.cpp) |        | 
 | [P2672](https://www.luogu.com.cn/record/67263539) | [![](./icon/AC2.png)](./luogu/P2672.cpp) |        | 
 | [P2882](https://www.luogu.com.cn/record/67888426) | [![](./icon/AC2.png)](./luogu/P2882.cpp) |        | 
