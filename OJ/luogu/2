@@ -1,0 +1,290 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+const int kMaxN = 1e6;
+
+namespace IO {
+  template <class type = long long>
+  type read() {
+    type w = 0, f = 1;
+    char ch = getchar();
+    while (ch > '9' || ch < '0')   { f = ch == '-' ? -1 : 1; ch = getchar(); }
+    while (ch >= '0' && ch <= '9') { w = w * 10 + ch - '0'; ch = getchar(); }
+    return w * f;
+  }
+};
+
+// class SegmentTree
+class SegmentTree {
+private:
+  struct node {
+    node * left, * right;
+    int l, r;
+    int value;
+    int add_lazy;
+    int range_lazy;
+    int Max;
+    int Min;
+
+    node(int l, int r) : l(l), r(r) {
+      left = right = nullptr;
+    }
+
+    void add(int k) {
+      value += (r - l + 1) * k;
+      add_lazy += k;
+    }
+
+    void range() {
+      swap(Max, Min);
+      Max = -Max;
+      Min = -Min;
+      value = -value;
+      range_lazy = 1;
+    }
+  }*root;
+
+  void pushup(node * p) {
+    p->value = p->left->value + p->right->value;
+    p->Max = max(p->left->Max, p->right->Max);
+    p->Min = min(p->left->Min, p->right->Min);
+  }
+
+  void pushdown(node * p) {
+    if (p->left == nullptr) return;
+    if (p->add_lazy) {
+      p->left->add(p->add_lazy);
+      p->right->add(p->add_lazy);
+      p->add_lazy = 0;
+    }
+    if (p->range_lazy) {
+      p->left->range();
+      p->right->range();
+      p->range_lazy = 0;
+    }
+  }
+
+  void build(node * p, int * array, int l, int r) {
+    if (l == r) {
+      p->value = p->Max = p->Min = array[l];
+      return;
+    }
+    int mid = (l + r) >> 1;
+    build(p->left = new node(l, mid), array, l, mid);
+    build(p->right = new node(mid + 1, r), array, mid + 1, r);
+    pushup(p);
+  }
+
+  void add(node * p, int l, int r, int k) {
+    if (p->l > r || p->r < l) {
+      return;
+    }
+    pushdown(p);
+    if (p->l >= l && p->r <= r) {
+      p->add(k);
+      return;
+    }
+    add(p->left,l, r, k);
+    add(p->right, l, r, k);
+    pushup(p);
+  }
+
+  void range(node * p, int l, int r) {
+    if (p->l > r || p->r < l) {
+      return;
+    }
+    pushdown(p);
+    if (p->l >= l && p->r <= r) {
+      p->range();
+      return;
+    }
+    range(p->left,l, r);
+    range(p->right, l, r);
+    pushup(p);
+  }
+
+  int get_sum(node * p, int l, int r) {
+    if (p->l > r || p->r < l) {
+      return 0;
+    }
+    pushdown(p);
+    if (p->l >= l && p->r <= r) {
+      return p->value;
+    }
+    return get_sum(p->left, l, r) + get_sum(p->right, l, r);
+  }
+
+  int get_max(node * p, int l, int r) {
+    if (p->l > r || p->r < l) {
+      return -INT_MAX;
+    }
+    pushdown(p);
+    if (p->l >= l && p->r <= r) {
+      return p->Max;
+    }
+    return max(get_max(p->left, l, r), get_max(p->right, l, r));
+  }
+
+  int get_min(node * p, int l, int r) {
+    if (p->l > r || p->r < l) {
+      return INT_MAX;
+    }
+    pushdown(p);
+    if (p->l >= l && p->r <= r) {
+      return p->Min;
+    }
+    return min(get_min(p->left, l, r), get_min(p->right, l, r));
+  }
+
+  void showall(node * p) {
+    pushdown(p);
+    if (p->left) {
+      showall(p->left);
+      showall(p->right);
+    }
+    cout << p->l << " " << p->r << " " << p->value << " " << p->Max << " " << p->Min << endl;
+  }
+
+public:
+  void build(int * array, int n) { build(root = new node(1, n), array, 1, n); }
+  int get_sum(int l, int r)      { return get_sum(root, l, r); }
+  int get_max(int l, int r)      { return get_max(root, l, r); }
+  int get_min(int l, int r)      { return get_min(root, l, r); }
+  void range(int l, int r)       { range(root, l, r); }
+  void add(int l, int r, int k)  { add(root, l, r, k); }
+  void showall()                 { showall(root); }
+};
+// class SegmentTree
+
+struct edge {
+  int v, next, dis;
+}e[kMaxN];
+
+int tot = 0;
+int head[kMaxN];
+int top[kMaxN];
+int heavy_son[kMaxN];
+int size[kMaxN];
+int father[kMaxN];
+int depth[kMaxN];
+int pos[kMaxN];
+int total = 0;
+int a[kMaxN];
+
+void add_edge(int u, int v, int dis) {
+  e[++tot] = {v, head[u], dis};
+  head[u] = tot;
+}
+
+void dfs1(int u, int f) {
+  father[u] = f;
+  size[u] = 1;
+  depth[u] = depth[f] + 1;
+  for (int i = head[u]; i; i = e[i].next) {
+    int v = e[i].v;
+    if (v == f) continue;
+    dfs1(v, u);
+    size[u] += size[v];
+    if (size[heavy_son[u]] <= size[v]) {
+      heavy_son[u] = v;
+    }
+  }
+}
+
+void dfs2(int u, int top_, int dis) {
+  pos[u] = ++total;
+  top[u] = top_;
+  a[total] = dis;
+  if (heavy_son[u]) {
+    dfs2(heavy_son[u], top_, 0);
+  }
+  for (int i = head[u]; i; i = e[i].next) {
+    int v = e[i].v;
+    if (v == heavy_son[u]) {
+      a[pos[v]] = e[i].dis;
+    }
+    if (v == father[u] || v == heavy_son[u]) continue;
+    dfs2(v, v, e[i].dis);
+  }
+}
+
+int n;
+SegmentTree tree;
+
+void range(int x, int y) {
+  while (top[x] != top[y]) {
+    if (depth[top[x]] < depth[top[y]]) {
+      swap(x, y);
+    }
+    tree.range(pos[top[x]], pos[x]);
+    x = father[x];
+  }
+  if (depth[x] > depth[y]) {
+    swap(x, y);
+  }
+  tree.range(pos[x], pos[y]);
+  tree.range(pos[x], pos[x]);
+}
+
+int sum(int x, int y) {
+  int res = 0;
+  while (top[x] != top[y]) {
+    if (depth[top[x]] < depth[top[y]]) {
+      swap(x, y);
+    }
+    res += tree.get_sum(pos[top[x]], pos[x]);
+    x = father[x];
+  }
+  if (depth[x] > depth[y]) {
+    swap(x, y);
+  }
+  res += tree.get_sum(pos[x], pos[y]);
+  res -= tree.get_sum(pos[x], pos[x]);
+  return res;
+}
+
+int Max(int x, int y) {
+  int sum(int x, int y) {
+    int res = 0;
+    while (top[x] != top[y]) {
+      if (depth[top[x]] < depth[top[y]]) {
+        swap(x, y);
+      }
+      res += tree.get_sum(pos[top[x]], pos[x]);
+      x = father[x];
+    }
+    if (depth[x] > depth[y]) {
+      swap(x, y);
+    }
+    res += tree.get_sum(pos[x], pos[y]);
+    res -= tree.get_sum(pos[x], pos[x]);
+    return res;
+  }
+}
+
+int main() {
+  using namespace IO;
+  string str;
+  n = read();
+  for (int i = 1; i < n; i++) {
+    int x = read(), y = read(), dis = read();
+    x++, y++;
+    add_edge(x, y, dis);
+    add_edge(y, x, dis);
+  }
+  dfs1(1, 0);
+  dfs2(1, 1, 0);
+  int m = read();
+  while (m--) {
+    cin >> str;
+    if (str == "SUM") {
+    } else if (str == "MAX") {
+    } else if (str == "N") {
+    } else if (str == "MIN") {
+    } else if (str == "SM") {
+    } else {
+    }
+  }
+  return 0;
+}
