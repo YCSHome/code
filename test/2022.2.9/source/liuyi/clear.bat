@@ -1,1 +1,0 @@
-del *.exe *.in *.out -r
