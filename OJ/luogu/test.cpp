@@ -1,104 +1,86 @@
-#include<iostream>
-#include<cstdio>
-#include<cstring>
+#include <iostream>
 #define ll long long
 using namespace std;
-int head[505],dfn[505],low[505],vis[505],stack[505];
-bool cut[505],in_stack[505];
-int n,m,cnt,num,tot,deg,ans1,T,cases,root,top;
-ll ans2;
-struct node
-{
-  int from;
-  int to;
-  int next;
-}e[1010];
-inline void first()
-{
-  memset(head,0,sizeof(head));
-  memset(dfn,0,sizeof(dfn));
-  memset(low,0,sizeof(low));
-  memset(cut,0,sizeof(cut));
-  memset(vis,0,sizeof(vis));
-  top=cnt=tot=n=ans1=T=0; ans2=1;
+long long read(){
+	long long x=0,f=1;char ch=getchar();
+	while(!isdigit(ch)){if(ch=='-') f=-1;ch=getchar();}
+	while(isdigit(ch)){x=x*10+ch-48;ch=getchar();}
+	return x*f;
 }
-inline void insert(int from,int to)
-{
-  e[++num].from=from;
-  e[num].to=to;
-  e[num].next=head[from];
-  head[from]=num;
+void write(long long x){
+    if(x<0) putchar('-'),x=-x;
+    if(x>9) write(x/10);
+    putchar(x%10+'0');
 }
-inline int read()
-{
-  int x=0,f=1; char c=getchar();
-  while (c<'0'||c>'9'){if(c=='-')f=-1;c=getchar();}
-  while (c>='0'&&c<='9'){x=x*10+c-'0';c=getchar();}
-  return x*f;
+const int N=3e5+10;
+int n,k;
+ll b[N],a[N],ad[N],sum[N],len,ans;
+void add(int l,int r,ll v){//分块的区间修改 
+	int kl=l/len,kr=r/len;
+	if(kl==kr){
+		for(int i=l;i<=r;i++){
+			a[i]+=v;
+			sum[kl]+=v;
+		}
+		return;
+	}
+	for(int i=l;i<=kl*len+len-1;i++){
+		a[i]+=v;
+		sum[kl]+=v;
+	}
+	for(int i=kl+1;i<kr;i++){
+		ad[i]+=v;
+		sum[i]+=len*v;
+	}
+	for(int i=kr*len;i<=r;i++){
+		a[i]+=v;
+		sum[kr]+=v;
+	}
 }
-void Tarjan(int now,int father)//求割点 
-{
-  dfn[now]=low[now]=++tot;
-  for(int i=head[now];i;i=e[i].next)
-  {
-    int v=e[i].to;
-    if(!dfn[v])
-    {
-      Tarjan(v,now);
-      low[now]=min(low[now],low[v]);
-      if(low[v]>=dfn[now])
-      {
-        if(now==root) deg++;
-        else cut[now]=true;
-      }
-    }
-    else if(v!=father) low[now]=min(low[now],dfn[v]);//不要跟求环混了 具体原理去网上找 
+ll ask(int l,int r){//分块的区间求和 
+	ll ans=0;
+	int kl=l/len,kr=r/len;
+	if(kl==kr){
+		for(int i=l;i<=r;i++)
+			ans+=a[i]+ad[kl];
+		return ans;
+	}
+	for(int i=l;i<=kl*len+len-1;i++)
+		ans+=a[i]+ad[kl];
+	for(int i=kl+1;i<kr;i++)
+		ans+=sum[i];
+	for(int i=kr*len;i<=r;i++)
+		ans+=a[i]+ad[kr];
+	return ans;
+}
+int main(){
+	n=read();k=read();
+	len=sqrt(n);
+	for(int i=1;i<=n;i++){
+		b[i]=read();
+    int t = 0 - b[i] + b[i - 1];
+    cout << t << endl;
+		add(i,i,0-b[i]+b[i-1]);
+	}
+  for (int i = 1; i <= n; i++) {
+    cout << ask(1, i) << " ";
   }
-}
-void dfs(int x)//遍历每个连通块 
-{
-  vis[x]=T;//标记 
-  if(cut[x]) return;
-  cnt++;//数量 
-  for(int i=head[x];i;i=e[i].next)
-  {
-    int v=e[i].to;
-    if(cut[v]&&vis[v]!=T) num++,vis[v]=T;//统计割点数目。 
-                                         //如果是割点且标记不与遍历的的连通块相同就修改标记。 
-    if(!vis[v])dfs(v);
-  }
-}
-int main()
-{
-  m=read();
-  while (m)
-  {
-    first();
-    for (int i=1;i<=m;i++)
-    {
-      int u=read(),v=read();
-      n=max(n,max(u,v));//这个地方要处理一下 
-      insert(u,v); insert(v,u);
-    }
-    for (int i=1;i<=n;i++)
-    {
-      if (!dfn[i]) Tarjan(root=i,0);
-      if (deg>=2) cut[root]=1;//根节点的割点 
-      deg=0;//不要忘记是多组数据 
-    }
-    for (int i = 1; i <= n; i++) {
-      std::cout << cut[i] << std::endl;
-    }
-    for (int i=1;i<=n;i++)
-      if (!vis[i]&&!cut[i])//不是割点 
-      {
-        T++; cnt=num=0;//T为连通块的标记 
-        dfs(i);
-        if (!num) ans1+=2,ans2*=cnt*(cnt-1)/2;//建两个 别忘记除以二 因为两个建立的出口没有差异 
-        if (num==1) ans1++,ans2*=cnt;//建一个 
-      }
-    printf("Case %d: %d %lld\n",++cases,ans1,ans2);
-    m=read();
-  }
-  return 0;
+  cout << endl;
+	for(int i=n;i>=1;i--){
+		ll v=ask(1,i);//v就是b[i] 
+    cout << v << endl;
+		if(v>=0)//已经满足要求就不用计算 
+			continue;
+		v=-v;//把负数改为正数便于计算 
+		if(i>=k){
+			add(i-k+1,i,(v/k)+(v%k>0));//(v/k)+(v%k>0)相当于v/k向上取整
+			ans+=(v/k)+(v%k>0);
+		}
+		else{//边界情况 
+			add(1,k,(v/i)+(v%i>0)); 
+			ans+=(v/i)+(v%i>0);
+		}
+	}
+	write(ans);
+	return 0;
 }
