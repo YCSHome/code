@@ -1,17 +1,63 @@
 #include<iostream>
+#include<algorithm>
 #include<cstdio>
+#include<queue>
+#include<map>
+#include<vector>
+#include<memory.h>
+#include<set> 
 #include<cmath>
+
+#define int long long
+
 using namespace std;
-double dis(double x1, double y1, double x2, double y2)
-{
-	return sqrt(abs((x1 - x2) * (x1 - x2)) + abs((y1 - y2) * (y1 - y2)));
+
+struct house{
+  int ind;
+  int tim;
+}h[1000005];
+
+int n,m,t,ans=0,res=0;
+priority_queue<int> pq;
+
+bool cmp(house a,house b){
+  return a.ind<b.ind;
 }
-int main()
-{
-	double x1, y1, x2, y2, x3, y3, c;
-	cin >> x1 >> y1 >> x2 >> y2 >> x3 >> y3;
-	double dis1 = dis(x1, y1, x2, y2), dis2 = dis(x2, y2, x3, y3), dis3 = dis(x3, y3, x1, y1);
-	c = dis1 + dis2 + dis3;
-	printf("%.2f", c);
-	return 0;
+
+signed main(){
+
+  cin>>n>>m;
+
+  for(int i=1;i<=n;i++){
+    scanf("%lld%lld",&h[i].ind,&h[i].tim);
+  }
+
+  sort(h+1,h+n+1,cmp);
+  h[0].ind=0;
+
+  int tim=0;
+  for(int i=1;i<=n;i++){
+
+    tim+=h[i].ind-h[i-1].ind;
+    pq.push(h[i].tim);
+    ans++;
+    tim+=h[i].tim;
+
+    while(tim>m&&!pq.empty()){
+      tim-=pq.top();
+      pq.pop();
+      ans--;
+    }
+
+    if(tim>m){
+      break;
+    }
+
+    res=max(res,ans);
+
+  }
+
+  cout<<res<<endl;
+
+  return 0;
 }
