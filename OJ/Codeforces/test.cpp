@@ -1,22 +1,65 @@
-#include<iostream>
-#include<cstdio>
-#include<cstring>
-#include<algorithm>
-#define ll long long
+#include <cstdio>
+#include <iostream>
+#include <algorithm>
+#include <cmath>
+#include <cstdlib>
+
 using namespace std;
-char a[1000010];int n,fail[1000010];
-int main(){
-  scanf("%d",&n);scanf("%s",a);int i,j;ll cnt=0;
-  fail[0]=fail[1]=0;j=0;
-  for(i=1;i<n;i++){//求解next
-    while(j&&(a[i]!=a[j])) j=fail[j];
-    j+=(a[i]==a[j]);fail[i+1]=j;
+
+const int N=2e5+10;
+
+int n,fir[N],tot,col[N],fa[N];
+struct node {int to,nex;} e[N << 1];
+
+void add(int u,int v)
+{
+	e[++tot].to=v;
+	e[tot].nex=fir[u];
+	fir[u]=tot;
+	return ;
+}
+
+void init(int x,int dad)
+{
+	fa[x]=dad;
+	for(int i=fir[x];i;i=e[i].nex)
+		if(e[i].to^dad) init(e[i].to,x);
+	return ; 
+}
+
+void dfs(int x)
+{
+	printf("%d ",x);
+	for(int i=fir[x];i;i=e[i].nex)
+		if(e[i].to^fa[x])
+		{
+			col[e[i].to]^=1;//往子树走
+			dfs(e[i].to);
+			printf("%d ",x);
+			col[x]^=1;//回来
+			if(!col[e[i].to])//处理儿子颜色
+			{
+				printf("%d %d ",e[i].to,x);
+				col[e[i].to]=1;
+				col[x]^=1;
+			}
+		}
+	return ;
+}
+
+int main()
+{
+//	freopen("work.in","r",stdin); freopen("work.out","w",stdout);
+	scanf("%d",&n);
+	for(int i=1;i<=n;i++) {scanf("%d",&col[i]); if(col[i] < 0) col[i]=0;}
+	for(int i=1,u,v;i<n;i++) {scanf("%d%d",&u,&v); add(u,v); add(v,u);}
+	init(1,0); dfs(1);
+  cout << endl;
+  for (int i = 1; i <= n; i++) {
+    cout << col[i] << " ";
   }
-  for(i=1;i<=n;i++){
-    j=i;
-    while(fail[j]) j=fail[j];
-    if(fail[i]!=0) fail[i]=j;//记忆化
-    cnt+=i-j;
-  }
-  printf("%lld",cnt);
+  cout << endl;
+	if(!col[1]) printf("%d 1 %d ",e[fir[1]].to,e[fir[1]].to);//最后的白点
+//	fclose(stdin); fclose(stdout);
+	return 0;
 }
