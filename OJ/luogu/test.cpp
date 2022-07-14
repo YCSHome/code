@@ -1,27 +1,48 @@
-#include <cstdio>
-#define Open(s) freopen(s".in","r",stdin);freopen(s".out","w",stdout);
-#define Close fclose(stdin);fclose(stdout);
-int n, ans;
-int x[60000], y[60000], vis[1100][1100], xs[1100][1100];
-int main(){
-  Open("count");
-  scanf("%d", &n);
-  for(int i = 1; i <= n; ++i){
-    scanf("%d%d", &x[i], &y[i]);
-    x[i] = (x[i] + 51) << 1; //防止负数和小数
-    y[i] = (y[i] + 51) << 1;
-    vis[x[i]][y[i]] = 1;
-  }
-  for(int i = 1; i < n; ++i)
-    for(int j = i + 1; j <= n; ++j){
-      int midx = (x[i] + x[j]) / 2;
-      int midy = (y[i] + y[j]) / 2;            
-      int x1 = midx - (midy - y[i]), y1 = midy + (midx - x[i]);
-      int x2 = midx + (midy - y[i]), y2 = midy - (midx - x[i]);
-      if(x1 <= 0) continue; if(x2 <= 0) continue;
-      if(y1 <= 0) continue; if(y2 <= 0) continue; 
-      if(vis[x1][y1] && vis[x2][y2]) ++ans;
-    }
-  printf("%d\n", ans >> 1);
-  return 0;
+#include <stdio.h>
+#include<iostream>
+#include <algorithm>
+using namespace std ;
+const int maxn = 1000016,maxe = 3000000 ;
+struct node{
+  int to,pre,val,from;
+}e[maxe];
+int x,y,n,e1,e2,cnt,num,h,t ;
+int into[maxn],q[maxn],head[maxn] ;
+inline void addedge(int x,int y,int w) 
+{
+  e[++cnt].to = y;e[cnt].from=x;
+  e[cnt].pre = head[x] ;
+  e[cnt].val=w; 
+  head[x] =cnt;
 }
+int main(){
+  scanf("%d%d%d",&n,&e1,&e2) ;
+  for(int i=1;i<=e1;i++) {
+    scanf("%d%d",&x,&y) ;
+    addedge(x,y,0);into[y]++;
+  } 
+  for(int i=1;i<=n;i++) 
+    if(into[i]==0) q[++t]=i;
+  if(cnt%2==0) cnt++;
+  for(int i=1;i<=e2;i++){
+    scanf("%d%d",&x,&y);
+    addedge(x,y,1);
+    addedge(y,x,1);
+  }
+  while(h<t) {
+    int u=q[++h] ; 
+    for(int i=head[u];i;i=e[i].pre) {
+      if(e[i].val==0) {
+        into[e[i].to]--; 
+        if(into[e[i].to]==0) q[++t]=e[i].to;
+      } 
+    }
+    cout << u << endl;
+    for(int i=head[u];i;i=e[i].pre)
+      if(e[i].val==1) e[i^1].val=2;
+  }
+  for(int i=1;i<=cnt;i++)
+    if(e[i].val==1) printf("%d %d\n",e[i].from,e[i].to);
+  return 0 ;
+}
+

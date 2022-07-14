@@ -1,65 +1,50 @@
-#include <cstdio>
-#include <iostream>
-#include <algorithm>
-#include <cmath>
-#include <cstdlib>
-
+#include<iostream>
+#include<cstdio>
+#include<map>
+#include<algorithm>
+#define R register
+#define MAXN 1000100
 using namespace std;
-
-const int N=2e5+10;
-
-int n,fir[N],tot,col[N],fa[N];
-struct node {int to,nex;} e[N << 1];
-
-void add(int u,int v)
+struct node
 {
-	e[++tot].to=v;
-	e[tot].nex=fir[u];
-	fir[u]=tot;
-	return ;
-}
-
-void init(int x,int dad)
-{
-	fa[x]=dad;
-	for(int i=fir[x];i;i=e[i].nex)
-		if(e[i].to^dad) init(e[i].to,x);
-	return ; 
-}
-
-void dfs(int x)
-{
-	printf("%d ",x);
-	for(int i=fir[x];i;i=e[i].nex)
-		if(e[i].to^fa[x])
-		{
-			col[e[i].to]^=1;//往子树走
-			dfs(e[i].to);
-			printf("%d ",x);
-			col[x]^=1;//回来
-			if(!col[e[i].to])//处理儿子颜色
-			{
-				printf("%d %d ",e[i].to,x);
-				col[e[i].to]=1;
-				col[x]^=1;
-			}
-		}
-	return ;
-}
-
+	int a,b;
+	bool operator < (const node &tp) const
+	{
+		return a<tp.a;
+	} 
+}w[MAXN];
+int n,len,ans;
+int dp[MAXN];
+map<int,bool> mp;//记录i位置是否是激光塔
+map<int,int> power;//记录i位置激光塔威力
 int main()
 {
-//	freopen("work.in","r",stdin); freopen("work.out","w",stdout);
 	scanf("%d",&n);
-	for(int i=1;i<=n;i++) {scanf("%d",&col[i]); if(col[i] < 0) col[i]=0;}
-	for(int i=1,u,v;i<n;i++) {scanf("%d%d",&u,&v); add(u,v); add(v,u);}
-	init(1,0); dfs(1);
-  cout << endl;
-  for (int i = 1; i <= n; i++) {
-    cout << col[i] << " ";
+	for(R int i=1;i<=n;i++)
+		scanf("%d%d",&w[i].a,&w[i].b);
+	sort(w+1,w+1+n);//貌似数据不用排序...
+	for(R int i=1;i<=n;i++)
+	{
+		mp[w[i].a]=true;
+		power[w[i].a]=w[i].b;
+		len=max(len,w[i].a);
+	}
+	if(mp[0]) dp[0]=1;
+	for(R int i=0;i<=len;i++)
+	{
+		if(mp[i]) 
+		{
+			int p=power[i];
+			if(p>=i) dp[i]=1;
+			else dp[i]=dp[i-p-1]+1;
+		}
+		else dp[i]=dp[i-1];
+		ans=max(ans,dp[i]);
+	}
+  for (int i = 0; i <= len; i++) {
+    cout << dp[i] << " ";
   }
   cout << endl;
-	if(!col[1]) printf("%d 1 %d ",e[fir[1]].to,e[fir[1]].to);//最后的白点
-//	fclose(stdin); fclose(stdout);
+	printf("%d\n",n-ans); 
 	return 0;
 }
