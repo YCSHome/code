@@ -1,4 +1,3 @@
-// 数据生成器
 #include <fstream>
 #include <iostream>
 #include <string>
