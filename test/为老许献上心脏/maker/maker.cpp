@@ -74,19 +74,22 @@ int main() {
       for (string & str : wCode) {
         if(system("./" + str + " < input > output")) {
           cout << "RE...!!" << endl;
-          return -1;
+          i--;
+          goto End;
         }
         ifstream fin("output");
         getline(fin, a, char(EOF));
         if (a == answer) {
-          cout << "  错误代码答案正确了！答案不予通过" << endl;
+          cout << "  在" + str + "中错误代码答案正确了！答案不予通过" << endl;
           i--;
-          continue;
+          goto End;
         }
       }
-      cout << "完美答案!" << endl;
+      cout << "  完美数据!" << endl;
       copy("input", to_string(i) + ".in");
       copy("answer", to_string(i) + ".out");
+End:
+      cout << "";
     }
   }
   return 0;

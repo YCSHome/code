@@ -1,74 +1,105 @@
-#include <bits/stdc++.h>
-
+#include <iostream>
+#define int long long
+ 
 using namespace std;
-
-int t, n;
-int a[100010], b[100010];
-
-inline int read() {
-	int s(0), f(1);
-	char ch(getchar());
-	while (ch < '0' || ch > '9') {
-		if (ch == '-') {
-			f = -1;
-		}
-		ch = getchar();
-	}
-	while (ch > '/' && ch < ':') {
-		s = (s << 3) + (s << 1) + ch - '0';
-		ch = getchar();
-	}
-	return s * f;
-}
-
-inline void write(int x) {
-	if (x > 9) {
-		write(x / 10);
-	}
-	putchar(x % 10 + '0');
-}
-
-int main() {
-	t = read();
-	while (t--) {
-		n = read();
-		for (int i = 1; i <= n; ++i) {
-			a[i] = read();
-		}
-		sort(a + 1, a + 1 + n);
-		int l(1), r(1);
-		bool flag(true);
-		for (int i = 2; i <= n; ++i) {
-			if (a[i] == a[i - 1]) {
-				++r;
-			} else {
-				if (l == r) {
-					flag = false;
-					break;
-				}
-				for (int j = l; j < r; ++j) {
-					b[j] = j + 1;
-				}
-				b[r] = l;
-				l = r = i;
-			}
-		}
-		if (l == r) {
-			puts("-1");
-			continue;
-		}
-		for (int j = l; j < r; ++j) {
-			b[j] = j + 1;
-		}
-		b[r] = l;
-		if (flag) {
-			for (int i = 1; i <= n; ++i) {
-				write(b[i]);
-				putchar(' ');
-			}
-			puts("");
-		} else {
-		}
-	}
-	return 0;
+ 
+const int MOD = 1e9 + 9;
+const int kMaxN = 2e6;
+ 
+long long f[kMaxN];
+ 
+class SegmentTree {
+private:
+  struct node {
+    int l = 0, r = 0;
+    int lazyA = 0, lazyB = 0;
+    int value = 0;
+    node * left, * right;
+ 
+    void add(int a, int b) {
+      lazyA += a;
+      lazyA %= MOD;
+      lazyB += b;
+      lazyB %= MOD;
+      value += a * f[r - l + 1] % MOD + b * f[r - l + 1 + 1] % MOD - b;
+      value %= MOD;
+    }
+ 
+    void pushup() {
+      value = left->value + right->value;
+    }
+ 
+    void pushdown() {
+      if (!lazyA) {
+        return;
+      }
+      // 左右儿子要区别对待
+      left->add(lazyA, lazyB);
+      int rightLen = right->r - right->l + 1;
+      right->add((lazyA * f[rightLen  - 1] % MOD + lazyB * f[rightLen] % MOD) % MOD,
+                  lazyA * f[rightLen] % MOD + lazyB * f[rightLen + 1] % MOD);
+      lazyA = lazyB = 0;
+    }
+  } * root;
+ 
+  void build(node * p, int * a, int l, int r) {
+    p->l = l, p->r = r;
+    if (l == r) {
+      p->value = a[l];
+      return;
+    }
+    int mid = (l + r) >> 1;
+    build(p->left = new node, a, l, mid);
+    build(p->right = new node, a, mid + 1, r);
+    p->pushup();
+  }
+ 
+  int get(node * p, int l, int r) {
+    if (p->l > r || p->r < l) return 0;
+    if (l <= p->l && p->r <= r) {
+      return p->value;
+    }
+    p->pushdown();
+    return (get(p->left, l, r) + get(p->right, l, r)) % MOD;
+  }
+ 
+  void change(node * p, int l, int r) {
+    if (p->l > r || p->r < l) { return; }
+    if (l <= p->l && p->r <= r) {
+      p->add(f[p->l - l + 1], f[p->l - l + 2]);
+      return;
+    }
+    p->pushdown();
+    change(p->left, l, r);
+    change(p->right, l, r);
+    p->pushup();
+  }
+ 
+public:
+  void build(int * a, int n) { build(root = new node, a, 1, n); }
+  int get(int l, int r)      { return get(root, l, r); }
+  void change(int l, int r)  { change(root, l, r); }
+}t;
+ 
+int n, m;
+int a[kMaxN];
+ 
+signed main() {
+  cin >> n >> m;
+  for (int i = 1; i <= n; i++) {
+    cin >> a[i];
+  }
+  f[1] = 1;
+  for (int i = 2; i < kMaxN - 10; i++) { f[i] = (f[i - 2] + f[i - 1]) % MOD; }
+  t.build(a, n);
+  for (int i = 1; i <= m; i++) {
+    int opt, l, r;
+    cin >> opt >> l >> r;
+    if (opt == 1) {
+      t.change(l, r);
+    } else {
+      cout << t.get(l, r) << endl;
+    }
+  }
+  return 0;
 }
