@@ -1,32 +1,24 @@
 #include <bits/stdc++.h>
+#include <random>
 
 using namespace std;
 
 const int kMaxN = 1e6;
 
-int n = 1000, m = 1000;
-int father[kMaxN];
-
 int main() {
-  freopen("/home/liuyi/.input", "w", stdout);
-  srand(time(0));
-  cout << n << " " << m << endl;
-  for (int i = 1; i <= n; i++) {
-    cout << rand() + 1 << " ";
+  mt19937 e;
+  freopen("shit", "w", stdout);
+  uniform_int_distribution<int> rand(1, 1e9);
+  uniform_int_distribution<int> rand2(1, 2e4);
+  cout << 20000 << " " << 20000 << endl;
+  for (int i = 1; i <= 20000; i++) {
+    cout << rand(e) << " ";
   }
-  for (int i = 2; i <= n; i++) {
-    do {
-      father[i] = rand() % n + 1;
-    } while (father[i] >= i);
-    cout << father[i] << " " << i << endl;
-  }
-  while (m--) {
-    int opt = rand() % 2;
-    if (opt == 0) {
-      cout << 'Q' << " " << rand() % n + 1 << " " << rand() % n + 1 << endl;
-    } else {
-      cout << 'C' << " " << rand() % n + 1 << " " << rand() % n + 1 << " " << rand() << endl;
-    }
+  cout << endl;
+  for (int i = 1; i <= 20000; i++) {
+    int x = rand2(e), y = rand2(e);
+    if (x > y) swap(x, y);
+    cout << x << " " << y << endl;
   }
   return 0;
 }
